@@ -1,0 +1,17 @@
+language: shell
+os: linux
+
+services:
+  - docker
+env:
+  - LSWS_VERSION=5.4.6 PHP_VERSION=lsphp74 FOLDER=template TAG=latest
+  - LSWS_VERSION=5.4.6 PHP_VERSION=lsphp73 FOLDER=template
+script:
+  - |
+    if [ $TRAVIS_BRANCH == "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+        echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        cd $FOLDER && bash build.sh --lsws $LSWS_VERSION --php $PHP_VERSION --tag "$TAG" --push
+    else
+        cd $FOLDER && bash build.sh --lsws $LSWS_VERSION --php $PHP_VERSION
+    fi
+ 

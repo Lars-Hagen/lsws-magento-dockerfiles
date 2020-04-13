@@ -4,8 +4,8 @@ PHP_VERSION=''
 PUSH=''
 CONFIG=''
 TAG=''
-BUILDER='litespeedtech'
-REPO='litespeed'
+BUILDER='lars-hagen'
+REPO='lsws-magento'
 EPACE='        '
 
 echow(){
